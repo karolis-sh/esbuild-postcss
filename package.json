@@ -1,0 +1,48 @@
+{
+  "name": "template-javascript",
+  "version": "0.0.0",
+  "private": true,
+  "keywords": [],
+  "repository": "git@github.com:karolis-sh/template-javascript.git",
+  "license": "MIT",
+  "author": "Karolis Šarapnickis",
+  "main": "index.js",
+  "scripts": {
+    "commit": "npx cz",
+    "format": "run-p format:*",
+    "format:package.json": "sort-package-json package.json",
+    "format:prettier": "prettier --write '**/*.*'",
+    "lint": "run-p lint:*",
+    "lint:js": "eslint . --cache",
+    "lint:md": "markdownlint-cli2 '**/*.md' '!node_modules' '!**/node_modules' '!**/CHANGELOG.md'",
+    "qa": "run-p lint",
+    "release": "yarn && run-s qa && standard-version --no-verify && git push --follow-tags --no-verify && npm publish",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/package.json": "sort-package-json",
+    "*.{js}": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@k.sh/eslint-config": "^1.21.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^7.0.1",
+    "lint-staged": ">=10",
+    "markdownlint-cli2": "^0.1.3",
+    "npm-run-all": "^4.1.5",
+    "pretty-quick": "^3.1.1",
+    "sort-package-json": "^1.50.0",
+    "standard-version": "^9.3.0"
+  },
+  "volta": {
+    "node": "14.17.3",
+    "yarn": "1.22.10"
+  }
+}
