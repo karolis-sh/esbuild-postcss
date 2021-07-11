@@ -1,0 +1,18 @@
+@import url('./components/card.css');
+@import './components/button.css';
+@import './components/ab.css';
+
+:root {
+  --color: blue;
+}
+
+body {
+  padding: 0;
+  color: var(--color);
+}
+
+.x {
+  &_y {
+    width: auto;
+  }
+}

@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should handle child css imports 1`] = `
+"/* __tests__/fixtures/config-file/components/card.css */
+.card {
+  border: 1px solid red;
+  color: var(--color);
+}
+
+/* __tests__/fixtures/config-file/components/button.css */
+button {
+  background-color: #fff;
+  color: var(--color);
+}
+
+/* __tests__/fixtures/config-file/components/ab.css */
+.a .b {
+  color: black;
+}
+
+/* __tests__/fixtures/config-file/imports.css */
+:root {
+  --color: blue;
+}
+body {
+  padding: 0;
+  color: blue;
+  color: var(--color);
+}
+.x_y {
+  width: auto;
+}
+"
+`;
+
 exports[`should handle css file entry 1`] = `
 "/* __tests__/fixtures/config-file/index.css */
 :root {

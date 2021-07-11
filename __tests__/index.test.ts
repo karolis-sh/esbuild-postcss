@@ -20,6 +20,7 @@ const bundle = async (entry: string): Promise<string> => {
     outbase: cwd,
     bundle: true,
     plugins: [postcss()],
+    sourcemap: true,
   });
   spy.mockClear();
 
@@ -36,5 +37,10 @@ it('should handle css file entry', async () => {
 
 it('should handle css imports', async () => {
   const output = await bundle('fixtures/config-file/index.js');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle child css imports', async () => {
+  const output = await bundle('fixtures/config-file/imports.css');
   expect(output).toMatchSnapshot();
 });
