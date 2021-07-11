@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should handle css file entry 1`] = `
+"/* __tests__/fixtures/config-file/index.css */
+:root {
+  --color: red;
+}
+h1 {
+  color: red;
+  color: var(--color);
+}
+"
+`;
+
+exports[`should handle css imports 1`] = `
+"/* __tests__/fixtures/config-file/index.css */
+:root {
+  --color: red;
+}
+h1 {
+  color: red;
+  color: var(--color);
+}
+"
+`;
