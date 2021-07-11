@@ -40,7 +40,22 @@ it('should handle css imports', async () => {
   expect(output).toMatchSnapshot();
 });
 
-it('should handle child css imports', async () => {
-  const output = await bundle('fixtures/config-file/imports.css');
+it('should handle child css import', async () => {
+  const output = await bundle('fixtures/config-file/import.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle child css import url', async () => {
+  const output = await bundle('fixtures/config-file/import-url.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle postcss-import style inlining plugin', async () => {
+  const output = await bundle('fixtures/postcss-import/index.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle postcss-import style inlining plugin via import url', async () => {
+  const output = await bundle('fixtures/postcss-import/index-import-url.css');
   expect(output).toMatchSnapshot();
 });

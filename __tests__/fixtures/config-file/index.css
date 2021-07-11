@@ -5,3 +5,9 @@
 h1 {
   color: var(--color);
 }
+
+.x {
+  &_y {
+    width: auto;
+  }
+}

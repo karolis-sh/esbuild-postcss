@@ -1,34 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should handle child css imports 1`] = `
-"/* __tests__/fixtures/config-file/components/card.css */
-.card {
-  border: 1px solid red;
-  color: var(--color);
+exports[`should handle child css import 1`] = `
+"/* __tests__/fixtures/config-file/_root.css */
+:root {
+  --color: blue;
 }
 
-/* __tests__/fixtures/config-file/components/button.css */
-button {
-  background-color: #fff;
-  color: var(--color);
-}
-
-/* __tests__/fixtures/config-file/components/ab.css */
+/* __tests__/fixtures/config-file/features/nested.css */
 .a .b {
   color: black;
 }
 
-/* __tests__/fixtures/config-file/imports.css */
+/* __tests__/fixtures/config-file/features/properties.css */
+:root {
+  --background-color: yellow;
+}
+button {
+  background-color: yellow;
+  background-color: var(--background-color);
+  color: var(--color);
+}
+
+/* __tests__/fixtures/config-file/import.css */
+body {
+  padding: 0;
+  color: var(--color);
+}
+"
+`;
+
+exports[`should handle child css import url 1`] = `
+"/* __tests__/fixtures/config-file/_root.css */
 :root {
   --color: blue;
 }
-body {
-  padding: 0;
-  color: blue;
+
+/* __tests__/fixtures/config-file/features/nested.css */
+.a .b {
+  color: black;
+}
+
+/* __tests__/fixtures/config-file/features/properties.css */
+:root {
+  --background-color: yellow;
+}
+button {
+  background-color: yellow;
+  background-color: var(--background-color);
   color: var(--color);
 }
-.x_y {
-  width: auto;
+
+/* __tests__/fixtures/config-file/import-url.css */
+body {
+  padding: 0;
+  color: var(--color);
 }
 "
 `;
@@ -42,6 +67,9 @@ h1 {
   color: red;
   color: var(--color);
 }
+.x_y {
+  width: auto;
+}
 "
 `;
 
@@ -52,6 +80,53 @@ exports[`should handle css imports 1`] = `
 }
 h1 {
   color: red;
+  color: var(--color);
+}
+.x_y {
+  width: auto;
+}
+"
+`;
+
+exports[`should handle postcss-import style inlining plugin 1`] = `
+"/* __tests__/fixtures/postcss-import/index.css */
+:root {
+  --color: blue;
+}
+:root {
+  --background-color: yellow;
+}
+button {
+  background-color: yellow;
+  background-color: var(--background-color);
+  color: blue;
+  color: var(--color);
+}
+body {
+  padding: 0;
+  color: blue;
+  color: var(--color);
+}
+"
+`;
+
+exports[`should handle postcss-import style inlining plugin via import url 1`] = `
+"/* __tests__/fixtures/postcss-import/index-import-url.css */
+:root {
+  --color: blue;
+}
+:root {
+  --background-color: yellow;
+}
+button {
+  background-color: yellow;
+  background-color: var(--background-color);
+  color: blue;
+  color: var(--color);
+}
+body {
+  padding: 0;
+  color: blue;
   color: var(--color);
 }
 "

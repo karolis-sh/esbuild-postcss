@@ -1,0 +1,8 @@
+@import './_root.css';
+@import './features/nested.css';
+@import './features/properties.css';
+
+body {
+  padding: 0;
+  color: var(--color);
+}
