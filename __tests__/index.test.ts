@@ -4,10 +4,11 @@ import fs from 'fs/promises';
 import { build } from 'esbuild';
 
 import postcss from '../src';
+import { Options } from '../src/interface';
 
 const process = require('process');
 
-const bundle = async (entry: string): Promise<string> => {
+const bundle = async (entry: string, options?: Options): Promise<string> => {
   const inputFilename = path.join(__dirname, entry);
   const outputDir = path.join(os.tmpdir(), 'esbuild-postcss', entry, Date.now().toString());
   const cwd = path.dirname(inputFilename);
@@ -19,7 +20,7 @@ const bundle = async (entry: string): Promise<string> => {
     outdir: outputDir,
     outbase: cwd,
     bundle: true,
-    plugins: [postcss()],
+    plugins: [postcss(options)],
     sourcemap: true,
   });
   spy.mockClear();
@@ -57,5 +58,24 @@ it('should handle postcss-import style inlining plugin', async () => {
 
 it('should handle postcss-import style inlining plugin via import url', async () => {
   const output = await bundle('fixtures/postcss-import/index-import-url.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle no config file', async () => {
+  const output = await bundle('fixtures/no-config-file/index.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should use extensions option', async () => {
+  const output = await bundle('fixtures/config-file/index.pcss', {
+    extensions: ['.pcss'],
+  });
+  expect(output).toMatchSnapshot();
+});
+
+it('should use extensions option with no config', async () => {
+  const output = await bundle('fixtures/no-config-file/index.pcss', {
+    extensions: ['.pcss'],
+  });
   expect(output).toMatchSnapshot();
 });

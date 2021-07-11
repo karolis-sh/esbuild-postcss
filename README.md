@@ -35,6 +35,15 @@ esbuild
   .catch(() => process.exit(1));
 ```
 
+## Options
+
+### extensions
+
+Type: `string[]`<br>
+Default: `['.css']`
+
+This plugin will process files ending with these extensions.
+
 ## Licence
 
 [MIT](/LICENSE)
