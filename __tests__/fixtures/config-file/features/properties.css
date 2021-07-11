@@ -1,0 +1,8 @@
+:root {
+  --background-color: yellow;
+}
+
+button {
+  background-color: var(--background-color);
+  color: var(--color);
+}

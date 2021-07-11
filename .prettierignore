@@ -3,6 +3,7 @@
 !*.js
 !*.ts
 !*.tsx
+!*.css
 !*.json
 !*.md
 !*.yml

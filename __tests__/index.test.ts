@@ -7,7 +7,7 @@ import postcss from '../src';
 
 const process = require('process');
 
-const transform = async (entry: string, outFile: string): Promise<string> => {
+const bundle = async (entry: string): Promise<string> => {
   const inputFilename = path.join(__dirname, entry);
   const outputDir = path.join(os.tmpdir(), 'esbuild-postcss', entry, Date.now().toString());
   const cwd = path.dirname(inputFilename);
@@ -20,18 +20,42 @@ const transform = async (entry: string, outFile: string): Promise<string> => {
     outbase: cwd,
     bundle: true,
     plugins: [postcss()],
+    sourcemap: true,
   });
   spy.mockClear();
 
-  return fs.readFile(path.join(outputDir, outFile), 'utf-8');
+  return fs.readFile(
+    path.join(outputDir, `${path.basename(entry, path.extname(entry))}.css`),
+    'utf-8'
+  );
 };
 
 it('should handle css file entry', async () => {
-  const output = await transform('fixtures/config-file/index.css', 'index.css');
+  const output = await bundle('fixtures/config-file/index.css');
   expect(output).toMatchSnapshot();
 });
 
 it('should handle css imports', async () => {
-  const output = await transform('fixtures/config-file/index.js', 'index.css');
+  const output = await bundle('fixtures/config-file/index.js');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle child css import', async () => {
+  const output = await bundle('fixtures/config-file/import.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle child css import url', async () => {
+  const output = await bundle('fixtures/config-file/import-url.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle postcss-import style inlining plugin', async () => {
+  const output = await bundle('fixtures/postcss-import/index.css');
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle postcss-import style inlining plugin via import url', async () => {
+  const output = await bundle('fixtures/postcss-import/index-import-url.css');
   expect(output).toMatchSnapshot();
 });

@@ -1,0 +1,7 @@
+@import url('./_root.css');
+@import url('./features/properties.css');
+
+body {
+  padding: 0;
+  color: var(--color);
+}
