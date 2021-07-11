@@ -1,29 +1,43 @@
-# Header
+# esbuild-postcss
 
 [![npm version][package-version-badge]][package-version]
-[![gzip size][package-size-badge]][package-size]
-[![Node.js CI](https://github.com/karolis-sh/template-javascript/actions/workflows/node.js.yml/badge.svg)](https://github.com/karolis-sh/template-javascript/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/karolis-sh/esbuild-postcss/actions/workflows/node.js.yml/badge.svg)](https://github.com/karolis-sh/esbuild-postcss/actions/workflows/node.js.yml)
 [![License: MIT](https://img.shields.io/badge/license-mit-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> Sub-header
-
-Description.
-
-## Example
+Seamless integration between [esbuild](https://esbuild.github.io/)
+and [PostCSS](https://github.com/postcss/postcss).
 
 ## Installation
 
-## Features
+```bash
+npm i postcss esbuild-postcss -D
+```
 
-## API
+or
 
-## FAQ
+```bash
+yarn add postcss esbuild-postcss --dev
+```
+
+## Usage
+
+```js
+const esbuild = require('esbuild');
+const postcss = require('esbuild-postcss');
+
+esbuild
+  .build({
+    entryPoints: ['style.css'],
+    bundle: true,
+    outdir: 'build',
+    plugins: [postcss()],
+  })
+  .catch(() => process.exit(1));
+```
 
 ## Licence
 
 [MIT](/LICENSE)
 
-[package-version-badge]: https://badge.fury.io/js/react.svg
-[package-version]: https://www.npmjs.com/package/react
-[package-size-badge]: https://img.shields.io/bundlephobia/minzip/react?label=gzip
-[package-size]: https://bundlephobia.com/result?p=react
+[package-version-badge]: https://badge.fury.io/js/esbuild-postcss.svg
+[package-version]: https://www.npmjs.com/package/esbuild-postcss

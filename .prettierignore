@@ -1,6 +1,8 @@
 *
 !*/
 !*.js
+!*.ts
+!*.tsx
 !*.json
 !*.md
 !*.yml
@@ -10,3 +12,4 @@ node_modules
 package.json
 
 # project
+lib
