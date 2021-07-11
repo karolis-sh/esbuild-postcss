@@ -144,3 +144,31 @@ body {
 }
 "
 `;
+
+exports[`should use extensions option 1`] = `
+"/* __tests__/fixtures/config-file/index.pcss */
+:root {
+  --color: red;
+}
+h1 {
+  color: red;
+  color: var(--color);
+}
+.x_y {
+  width: auto;
+}
+"
+`;
+
+exports[`should use extensions option with no config 1`] = `
+"/* __tests__/fixtures/no-config-file/button.css */
+button {
+  border: 1px solid red;
+}
+
+/* __tests__/fixtures/no-config-file/index.pcss */
+body {
+  padding: 0;
+}
+"
+`;

@@ -3,32 +3,36 @@ import { Plugin } from 'esbuild';
 import postcss from 'postcss';
 import postcssrc from 'postcss-load-config';
 
+import { Options } from './interface';
+
 type PostcssOptions = Partial<postcssrc.Result>;
 
-export = (): Plugin => ({
+export = ({ extensions = ['.css'] }: Options = {}): Plugin => ({
   name: 'postcss',
   async setup(build) {
-    let postcssConfig: PostcssOptions | false;
+    let postcssOptions: PostcssOptions | false;
 
     try {
-      postcssConfig = await postcssrc();
+      postcssOptions = await postcssrc();
     } catch (err) {
-      postcssConfig = false;
+      postcssOptions = false;
     }
 
-    build.onLoad({ filter: /\.css$/ }, async (args) => {
-      if (postcssConfig) {
+    build.onLoad({ filter: new RegExp(`(${extensions.join('|')})$`) }, async (args) => {
+      if (postcssOptions) {
         const css = await fs.readFile(args.path, 'utf8');
 
-        const result = await postcss(postcssConfig.plugins).process(css, {
-          ...postcssConfig.options,
+        const result = await postcss(postcssOptions.plugins).process(css, {
+          ...postcssOptions.options,
           from: args.path,
         });
 
-        return {
-          contents: result.css,
-          loader: 'css',
-        };
+        return { contents: result.css, loader: 'css' };
+      }
+
+      if (!extensions.find((item) => item === '.css')) {
+        const css = await fs.readFile(args.path, 'utf8');
+        return { contents: css, loader: 'css' };
       }
 
       return { loader: 'css' };
