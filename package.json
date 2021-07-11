@@ -1,7 +1,6 @@
 {
   "name": "esbuild-postcss",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.0",
   "description": "Seamless integration between esbuild and PostCSS",
   "keywords": [
     "esbuild",
