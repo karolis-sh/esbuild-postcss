@@ -5,13 +5,16 @@ import postcssrc from 'postcss-load-config';
 
 export = (): Plugin => ({
   name: 'postcss',
-  setup(build) {
+  async setup(build) {
+    const postcssConfig = await postcssrc();
+
     build.onLoad({ filter: /\.css$/ }, async (args) => {
       const css = await fs.readFile(args.path, 'utf8');
 
-      const result = await postcssrc().then(({ plugins, options }) =>
-        postcss(plugins).process(css, { ...options, from: args.path })
-      );
+      const result = await postcss(postcssConfig.plugins).process(css, {
+        ...postcssConfig.options,
+        from: args.path,
+      });
 
       return {
         contents: result.css,
