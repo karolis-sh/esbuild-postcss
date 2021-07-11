@@ -59,3 +59,8 @@ it('should handle postcss-import style inlining plugin via import url', async ()
   const output = await bundle('fixtures/postcss-import/index-import-url.css');
   expect(output).toMatchSnapshot();
 });
+
+it('should handle no config file', async () => {
+  const output = await bundle('fixtures/no-config-file/index.css');
+  expect(output).toMatchSnapshot();
+});

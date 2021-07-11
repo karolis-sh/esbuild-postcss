@@ -88,6 +88,19 @@ h1 {
 "
 `;
 
+exports[`should handle no config file 1`] = `
+"/* __tests__/fixtures/no-config-file/button.css */
+button {
+  border: 1px solid red;
+}
+
+/* __tests__/fixtures/no-config-file/index.css */
+body {
+  padding: 0;
+}
+"
+`;
+
 exports[`should handle postcss-import style inlining plugin 1`] = `
 "/* __tests__/fixtures/postcss-import/index.css */
 :root {
