@@ -89,3 +89,10 @@ it('should handle invalid config', async () => {
     expect(/Loading PostCSS Parser failed/i.test(err.message)).toBeTruthy();
   }
 });
+
+it('should handle PostCSS options', async () => {
+  const output = await bundle('fixtures/postcss-options/index.sss', {
+    extensions: ['.sss'],
+  });
+  expect(output).toMatchSnapshot();
+});
