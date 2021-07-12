@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/karolis-sh/esbuild-postcss/compare/v0.0.2...v0.0.3) (2021-07-12)
+
+
+### Bug Fixes
+
+* handle non .css extension without postcss config ([ff281b4](https://github.com/karolis-sh/esbuild-postcss/commit/ff281b4a6de99776aa69664fc1dd8555a77b6a87))
+
 ### [0.0.2](https://github.com/karolis-sh/esbuild-postcss/compare/v0.0.1...v0.0.2) (2021-07-11)
 
 
