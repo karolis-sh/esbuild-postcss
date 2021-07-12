@@ -68,14 +68,14 @@ it('should handle no config file', async () => {
 
 it('should use extensions option', async () => {
   const output = await bundle('fixtures/config-file/index.pcss', {
-    extensions: ['.pcss'],
+    extensions: ['.css', '.pcss'],
   });
   expect(output).toMatchSnapshot();
 });
 
 it('should use extensions option with no config', async () => {
   const output = await bundle('fixtures/no-config-file/index.pcss', {
-    extensions: ['.pcss'],
+    extensions: ['.css', '.pcss'],
   });
   expect(output).toMatchSnapshot();
 });

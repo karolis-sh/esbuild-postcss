@@ -1,3 +1,4 @@
+import path from 'path';
 import fs from 'fs/promises';
 import { Plugin } from 'esbuild';
 import postcss from 'postcss';
@@ -30,7 +31,7 @@ export = ({ extensions = ['.css'] }: Options = {}): Plugin => ({
         return { contents: result.css, loader: 'css' };
       }
 
-      if (!extensions.find((item) => item === '.css')) {
+      if (path.extname(args.path) !== '.css') {
         const css = await fs.readFile(args.path, 'utf8');
         return { contents: css, loader: 'css' };
       }
