@@ -6,25 +6,27 @@ import postcssrc from 'postcss-load-config';
 
 import { Options } from './interface';
 
-type PostcssOptions = Partial<postcssrc.Result>;
-
 export = ({ extensions = ['.css'] }: Options = {}): Plugin => ({
   name: 'postcss',
   async setup(build) {
-    let postcssOptions: PostcssOptions | false;
+    let postcssConfig: postcssrc.Result | false;
 
     try {
-      postcssOptions = await postcssrc();
+      postcssConfig = await postcssrc();
     } catch (err) {
-      postcssOptions = false;
+      if (/No PostCSS Config found/i.test(err.message)) {
+        postcssConfig = false;
+      } else {
+        throw err;
+      }
     }
 
     build.onLoad({ filter: new RegExp(`(${extensions.join('|')})$`) }, async (args) => {
-      if (postcssOptions) {
+      if (postcssConfig) {
         const css = await fs.readFile(args.path, 'utf8');
 
-        const result = await postcss(postcssOptions.plugins).process(css, {
-          ...postcssOptions.options,
+        const result = await postcss(postcssConfig.plugins).process(css, {
+          ...postcssConfig.options,
           from: args.path,
         });
 
