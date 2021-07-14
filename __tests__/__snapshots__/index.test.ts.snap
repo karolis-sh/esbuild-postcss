@@ -1,5 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should handle PostCSS options 1`] = `
+"/* __tests__/fixtures/postcss-options/index.sss */
+.parent > .child {
+  color: black;
+}
+"
+`;
+
 exports[`should handle child css import 1`] = `
 "/* __tests__/fixtures/config-file/_root.css */
 :root {

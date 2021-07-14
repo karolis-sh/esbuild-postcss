@@ -8,7 +8,7 @@ import { Options } from '../src/interface';
 
 const process = require('process');
 
-const bundle = async (entry: string, options?: Options): Promise<string> => {
+const bundle = async (entry: string, options?: Options, silent?: boolean): Promise<string> => {
   const inputFilename = path.join(__dirname, entry);
   const outputDir = path.join(os.tmpdir(), 'esbuild-postcss', entry, Date.now().toString());
   const cwd = path.dirname(inputFilename);
@@ -22,6 +22,7 @@ const bundle = async (entry: string, options?: Options): Promise<string> => {
     bundle: true,
     plugins: [postcss(options)],
     sourcemap: true,
+    logLevel: silent ? 'silent' : undefined,
   });
   spy.mockClear();
 
@@ -76,6 +77,22 @@ it('should use extensions option', async () => {
 it('should use extensions option with no config', async () => {
   const output = await bundle('fixtures/no-config-file/index.pcss', {
     extensions: ['.css', '.pcss'],
+  });
+  expect(output).toMatchSnapshot();
+});
+
+it('should handle invalid config', async () => {
+  try {
+    await bundle('fixtures/invalid-config/index.css', {}, true);
+    expect(true).toBeFalsy();
+  } catch (err) {
+    expect(/Loading PostCSS Parser failed/i.test(err.message)).toBeTruthy();
+  }
+});
+
+it('should handle PostCSS options', async () => {
+  const output = await bundle('fixtures/postcss-options/index.sss', {
+    extensions: ['.sss'],
   });
   expect(output).toMatchSnapshot();
 });
