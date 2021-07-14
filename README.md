@@ -44,9 +44,5 @@ Default: `['.css']`
 
 This plugin will process files ending with these extensions.
 
-## Licence
-
-[MIT](/LICENSE)
-
 [package-version-badge]: https://badge.fury.io/js/esbuild-postcss.svg
 [package-version]: https://www.npmjs.com/package/esbuild-postcss
