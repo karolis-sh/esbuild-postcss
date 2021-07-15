@@ -16,7 +16,7 @@
     "clean": "rm -rf lib",
     "dev": "yarn build:js --watch",
     "build": "run-p build:*",
-    "build:js": "esbuild src/index.ts --outdir=lib --platform=node --format=cjs",
+    "build:js": "esbuild src/index.ts --outdir=lib --platform=node --format=cjs --target=node12",
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "commit": "npx cz",
     "format": "run-p format:*",
