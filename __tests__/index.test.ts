@@ -8,9 +8,18 @@ import { Options } from '../src/interface';
 
 const process = require('process');
 
-const bundle = async (entry: string, options?: Options, silent?: boolean): Promise<string> => {
+const bundle = async (
+  entry: string,
+  options?: Options,
+  silent?: boolean,
+): Promise<string> => {
   const inputFilename = path.join(__dirname, entry);
-  const outputDir = path.join(os.tmpdir(), 'esbuild-postcss', entry, Date.now().toString());
+  const outputDir = path.join(
+    os.tmpdir(),
+    'esbuild-postcss',
+    entry,
+    Date.now().toString(),
+  );
   const cwd = path.dirname(inputFilename);
 
   const spy = jest.spyOn(process, 'cwd');
@@ -28,7 +37,7 @@ const bundle = async (entry: string, options?: Options, silent?: boolean): Promi
 
   return fs.readFile(
     path.join(outputDir, `${path.basename(entry, path.extname(entry))}.css`),
-    'utf-8'
+    'utf-8',
   );
 };
 

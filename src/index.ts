@@ -21,24 +21,27 @@ export = ({ extensions = ['.css'] }: Options = {}): Plugin => ({
       }
     }
 
-    build.onLoad({ filter: new RegExp(`(${extensions.join('|')})$`) }, async (args) => {
-      if (postcssConfig) {
-        const css = await fs.readFile(args.path, 'utf8');
+    build.onLoad(
+      { filter: new RegExp(`(${extensions.join('|')})$`) },
+      async (args) => {
+        if (postcssConfig) {
+          const css = await fs.readFile(args.path, 'utf8');
 
-        const result = await postcss(postcssConfig.plugins).process(css, {
-          ...postcssConfig.options,
-          from: args.path,
-        });
+          const result = await postcss(postcssConfig.plugins).process(css, {
+            ...postcssConfig.options,
+            from: args.path,
+          });
 
-        return { contents: result.css, loader: 'css' };
-      }
+          return { contents: result.css, loader: 'css' };
+        }
 
-      if (path.extname(args.path) !== '.css') {
-        const css = await fs.readFile(args.path, 'utf8');
-        return { contents: css, loader: 'css' };
-      }
+        if (path.extname(args.path) !== '.css') {
+          const css = await fs.readFile(args.path, 'utf8');
+          return { contents: css, loader: 'css' };
+        }
 
-      return { loader: 'css' };
-    });
+        return { loader: 'css' };
+      },
+    );
   },
 });
