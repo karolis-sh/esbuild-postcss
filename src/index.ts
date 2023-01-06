@@ -1,5 +1,6 @@
-import path from 'path';
 import fs from 'fs/promises';
+import path from 'path';
+
 import { Plugin } from 'esbuild';
 import postcss from 'postcss';
 import postcssrc from 'postcss-load-config';

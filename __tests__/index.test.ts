@@ -1,6 +1,7 @@
-import path from 'path';
-import os from 'os';
 import fs from 'fs/promises';
+import os from 'os';
+import path from 'path';
+
 import { build } from 'esbuild';
 
 import postcss from '../src';

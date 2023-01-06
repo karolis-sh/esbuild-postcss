@@ -1,5 +1,5 @@
 {
-  "extends": "@k.sh/eslint-config/typescript/config.json",
+  "extends": "@k.sh/typescript-config/config.json",
   "compilerOptions": {
     "sourceMap": true,
     "removeComments": true,
