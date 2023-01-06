@@ -15,7 +15,10 @@ export = ({ extensions = ['.css'] }: Options = {}): Plugin => ({
     try {
       postcssConfig = await postcssrc();
     } catch (err) {
-      if (/No PostCSS Config found/i.test(err.message)) {
+      if (
+        err instanceof Error &&
+        /No PostCSS Config found/i.test(err.message)
+      ) {
         postcssConfig = false;
       } else {
         throw err;
