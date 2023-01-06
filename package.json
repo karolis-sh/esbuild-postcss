@@ -70,9 +70,5 @@
   "peerDependencies": {
     "esbuild": "*",
     "postcss": "^8.0.0"
-  },
-  "volta": {
-    "node": "14.17.3",
-    "yarn": "1.22.10"
   }
 }
