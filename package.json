@@ -47,7 +47,7 @@
     "@types/jest": "^26.0.24",
     "@types/node": "^16.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "esbuild": "^0.12.15",
+    "esbuild": "^0.16.14",
     "esbuild-jest": "^0.5.0",
     "eslint": "^8.31.0",
     "husky": "^8.0.3",
