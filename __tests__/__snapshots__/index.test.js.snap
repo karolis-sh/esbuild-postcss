@@ -5,6 +5,7 @@ exports[`should handle PostCSS options 1`] = `
 .parent > .child {
   color: black;
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;
 
@@ -34,6 +35,7 @@ body {
   padding: 0;
   color: var(--color);
 }
+/*# sourceMappingURL=import.css.map */
 "
 `;
 
@@ -63,6 +65,7 @@ body {
   padding: 0;
   color: var(--color);
 }
+/*# sourceMappingURL=import-url.css.map */
 "
 `;
 
@@ -78,6 +81,7 @@ h1 {
 .x_y {
   width: auto;
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;
 
@@ -93,6 +97,7 @@ h1 {
 .x_y {
   width: auto;
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;
 
@@ -106,6 +111,7 @@ button {
 body {
   padding: 0;
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;
 
@@ -128,6 +134,7 @@ body {
   color: blue;
   color: var(--color);
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;
 
@@ -150,6 +157,7 @@ body {
   color: blue;
   color: var(--color);
 }
+/*# sourceMappingURL=index-import-url.css.map */
 "
 `;
 
@@ -165,6 +173,7 @@ h1 {
 .x_y {
   width: auto;
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;
 
@@ -178,5 +187,6 @@ button {
 body {
   padding: 0;
 }
+/*# sourceMappingURL=index.css.map */
 "
 `;

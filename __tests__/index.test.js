@@ -1,16 +1,20 @@
-import path from 'path';
-import os from 'os';
-import fs from 'fs/promises';
-import { build } from 'esbuild';
-
-import postcss from '../src';
-import { Options } from '../src/interface';
-
+const fs = require('fs/promises');
+const os = require('os');
+const path = require('path');
 const process = require('process');
 
-const bundle = async (entry: string, options?: Options, silent?: boolean): Promise<string> => {
+const { build } = require('esbuild');
+
+const postcss = require('../lib');
+
+const bundle = async (entry, options, silent) => {
   const inputFilename = path.join(__dirname, entry);
-  const outputDir = path.join(os.tmpdir(), 'esbuild-postcss', entry, Date.now().toString());
+  const outputDir = path.join(
+    os.tmpdir(),
+    'esbuild-postcss',
+    entry,
+    Date.now().toString(),
+  );
   const cwd = path.dirname(inputFilename);
 
   const spy = jest.spyOn(process, 'cwd');
@@ -28,7 +32,7 @@ const bundle = async (entry: string, options?: Options, silent?: boolean): Promi
 
   return fs.readFile(
     path.join(outputDir, `${path.basename(entry, path.extname(entry))}.css`),
-    'utf-8'
+    'utf-8',
   );
 };
 
@@ -86,6 +90,7 @@ it('should handle invalid config', async () => {
     await bundle('fixtures/invalid-config/index.css', {}, true);
     expect(true).toBeFalsy();
   } catch (err) {
+    // eslint-disable-next-line jest/no-conditional-expect
     expect(/Loading PostCSS Parser failed/i.test(err.message)).toBeTruthy();
   }
 });
