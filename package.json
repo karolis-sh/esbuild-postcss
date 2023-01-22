@@ -23,7 +23,7 @@
     "format:package.json": "sort-package-json package.json",
     "format:prettier": "prettier --write '**/*.*'",
     "lint": "run-p lint:*",
-    "lint:js": "eslint .",
+    "lint:js": "eslint . --cache",
     "lint:md": "markdownlint-cli2 '**/*.md' '!node_modules' '!**/node_modules' '!**/CHANGELOG.md'",
     "lint:types": "tsc --noEmit",
     "pretest": "yarn build",
