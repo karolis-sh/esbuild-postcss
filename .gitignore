@@ -4,5 +4,4 @@ package-lock.json
 *.log*
 
 # project
-.eslintcache
 lib
